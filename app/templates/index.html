@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>ceci est une homepage !</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusantium autem beatae deserunt dolore ducimus et eum,
+            exercitationem fugiat incidunt inventore itaque minima
+            numquam odio officiis porro repellat sed tenetur! Quas?
+        </p>
+
+        <hr/>
+
+        <p>Lorem ipsum dolor sit.</p>
+
+        <hr/>
+        <p>On est le {{ date_to_print.strftime("%d %B %Y") }}.</p>
+
+
+            <table class="table table-striped table-dark table-hover table-round">
+                <thread>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sex</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    {% for user in users %}
+                        <tr class="{{ 'table-danger' if user['sex'] == 'Male' else 'table-secondary' if user['sex'] == 'Female' else 'table-warning'}}">
+                            <td>{{user["id"]}}</td>
+                            <td>{{user["name"]}}</td>
+                            <td>
+                                {% if user["sex"] %}
+                                    {{user["sex"]}}
+                                {% else %}
+                                    <button type="button" class="btn btn-warning">Definir</button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</body>
+</html>
