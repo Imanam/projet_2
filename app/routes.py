@@ -1,8 +1,7 @@
 from datetime import datetime
 
 
-from flask import render_template
-
+from flask import render_template, send_from_directory
 
 from app import app
 from app.templates.database import get_users
@@ -25,6 +24,7 @@ def route_index():
         date_to_print=date,
         users=users
     )
+
 
 '''
 @app.route("user/<id>")
